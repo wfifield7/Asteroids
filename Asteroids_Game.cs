@@ -31,7 +31,7 @@ namespace Asteroids
         public static Ship mySpaceship = new Ship(); //'ship object
         public Asteroids asteroid = new Asteroids("A", "A", Convert.ToChar(1)); //'asteroid object
         public static List<Asteroids> Asteroids_array = new List<Asteroids>();
-        public Bullets bullet = new Bullets(1, 1, 1); //'bullet object
+        public Bullets bullet = new Bullets(-1, -1, -1); //'bullet object
         public static List<Bullets> bullet_array = new List<Bullets>(); //'array of bullet objects
 
         //'get the size of the form
@@ -767,19 +767,22 @@ namespace Asteroids
 */
         private void theTick(object sender, EventArgs e)
         {
+            numberOfBullets = bullet_array.Count;
             if (lives <= 0)
             {
                 //Ending();
             }
             mySpaceship.Update();
 
+            bullet.update();
+
             // asteroids generation HERE
             int x = 0;
             // foreach (Asteroids asteroid in Asteroids_array)
             //for(int i = 0; i < Asteroids_array.Count; i++)
 
-            //for (int i = 0; i < (numberOfAsteroids - 1); i++)
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < (numberOfAsteroids - 1); i++)
+            //for (int i = 0; i < 2; i++)
                 {
                 Asteroids_array[i].Update(i);
                 //Char x = Asteroids_array[i].innervalue;
@@ -796,8 +799,11 @@ namespace Asteroids
             Zero2Shown = false;
             //collides();      // THIS NEEDS UNCOMMENTING TO DO COLLISIONS _ JUST OUT FOR TESTING
 
-
-
+            if (space == true)
+            {
+                new Bullets(mySpaceship.SOa, Convert.ToInt32(mySpaceship.SFx), Convert.ToInt32(mySpaceship.SFy));
+                space = false;
+            }
 
             if (right == true)
             {   //prevent ship turning too fast

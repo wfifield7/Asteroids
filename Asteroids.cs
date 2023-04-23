@@ -28,11 +28,13 @@ namespace Asteroids
             int innervalue = value;
             bool onScreen = true;
             size = asize;
-            double aSpeed = rnd.NextDouble() * 3 + 1; // 'random speed variable between 1 and 4
+            //double aSpeed = rnd.NextDouble() * 3 + 1; // 'random speed variable between 1 and 4
+            aSpeed = rnd.NextDouble() * 3 + 1;
             numberOfPoints = rnd.Next(5, 10); //'random number of points between 5 and 9
-            for (int i = 1; i <= numberOfPoints; i++)
+            //for (int i = 1; i <= numberOfPoints; i++)
+            for (int i = 0; i <= numberOfPoints - 1; i++)
             { //'loop through the number of points and calculate angles between the points based on the number of points and random numbers
-                FixedAngles[i - 1] = rnd.NextDouble() * (i * (2 * Math.PI) / numberOfPoints) + (i - 1) * (2 * Math.PI) / numberOfPoints; // check rnd.nextdouble // ask if FixedAngles[] is valid, [] not ()
+                FixedAngles[i] = (rnd.NextDouble() * (2 * Math.PI / numberOfPoints)) + (i * (2 * Math.PI / numberOfPoints)); // check rnd.nextdouble // ask if FixedAngles[] is valid, [] not ()
                 //MessageBox.Show("Fixed angle is: " + FixedAngles[i-1].ToString()); //x is anywhere from 16-35, y is always 0
             }
             
